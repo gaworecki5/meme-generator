@@ -17,6 +17,9 @@ class ImportTXT(ImportInterface):
     def parse(cls, filepath: str) -> List[QuoteModel]:
         """Parse .txt files and return list of QuoteModel objects"""
 
+        if not cls.can_ingest(filepath):
+            raise Exception("Cannot injest this file type")
+
         quotes = []
         with open(filepath) as f:
             for line in f.readlines():
