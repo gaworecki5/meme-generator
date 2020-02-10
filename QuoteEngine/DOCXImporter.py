@@ -5,7 +5,7 @@ from typing import List
 from docx import Document
 
 
-class ImportDOCX(ImportInterface):
+class DOCXImporter(ImportInterface):
     """Realized class to parse quotes from .docx files"""
 
     allowed_extensions = ["docx"]

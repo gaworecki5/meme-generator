@@ -3,7 +3,7 @@ from .ImportInterface import ImportInterface
 from typing import List
 
 
-class ImportTXT(ImportInterface):
+class TXTImporter(ImportInterface):
     """Realized class to parse quotes from .txt files"""
 
     allowed_extensions = ["txt"]
@@ -18,7 +18,7 @@ class ImportTXT(ImportInterface):
         """Parse .txt files and return list of QuoteModel objects"""
 
         if not cls.can_ingest(filepath):
-            raise Exception("Cannot injest this file type")
+            raise Exception("Cannot ingest this file type")
 
         quotes = []
         with open(filepath) as f:

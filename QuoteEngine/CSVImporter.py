@@ -5,7 +5,7 @@ from typing import List
 import pandas as pd
 
 
-class ImportCSV(ImportInterface):
+class CSVImporter(ImportInterface):
     """Realized class to parse quotes from .csv files"""
 
     allowed_extensions = ["csv"]

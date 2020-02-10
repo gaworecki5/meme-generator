@@ -26,7 +26,7 @@ class PDFImporter(ImportInterface):
         quotes = []
         tmp = f"./tmp/{random.randint(0,10000)}.txt"
         # call pdftotext with CLI
-        call = subprocess.call(["pdftotext", filepath, tmp])
+        subprocess.call(["pdftotext", filepath, tmp])
         with open(tmp, "r") as f:
             for line in f.readlines():
                 line = line.strip("/n/r").strip()
