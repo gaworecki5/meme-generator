@@ -1,0 +1,13 @@
+from .QuoteModel import QuoteModel
+from .ImportInterface import ImportInterface
+from typing import List
+
+class ImportTXT(ImportInterface):
+    """Realized class to parse quotes from .csv files"""
+
+    allowed_extensions = ["csv"]
+
+    @classmethod
+    def can_ingest(cls, filepath: str) -> bool:
+        ext = filepath.split(".")[-1]
+        return ext in cls.allowed_extensions
