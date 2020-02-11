@@ -37,7 +37,7 @@ def generate_meme(path=None, body=None, author=None):
         for file in quote_files:
             quotes.extend(Importer.parse(file))
 
-            quote = random.choice(quotes)
+        quote = random.choice(quotes)
     else:
         if author is None:
             raise Exception("All quotes must have an author")
