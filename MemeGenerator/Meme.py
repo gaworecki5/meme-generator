@@ -6,8 +6,8 @@ import random
 class Meme:
     """Class to create a meme given an image file path and Quote"""
 
-    def __init__(self, output_path: str):
-        self.output_path = output_path
+    def __init__(self, out_path: str):
+        self.out_path = out_path
 
     def make_meme(self, img_path, text, author, width=500):
         """Method to take input image path and quote and combines them randomly to create a meme"""
@@ -39,7 +39,6 @@ class Meme:
         text = textwrap.fill(text, line_length)
 
         # draw text and author onto image
-
         d = ImageDraw.Draw(img)
         d.text((10, location * img.height), text, fill="black", font=font_text)
         author_location = (
@@ -47,6 +46,7 @@ class Meme:
             location * img.height + text_size[1] * num_lines,
         )
         d.text(author_location, author, fill="black", font=font_author)
-        img.save(f"{self.output_path}/temp_meme.jpg")
-        img.show()
+        img.save(f"{self.out_path}/temp_meme.jpg")
+
+        return f"{self.out_path}/temp_meme.jpg"
 

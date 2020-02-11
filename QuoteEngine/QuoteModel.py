@@ -1,5 +1,5 @@
 class QuoteModel:
-    """ Class blah blah"""
+    """ Class to create Quote objects with body and author"""
 
     def __init__(self, body: str, author: str):
         self.body = body

@@ -1,7 +1,7 @@
 import os
 import random
 from MemeGenerator import *
-from QuoteEngine import *
+from QuoteEngine import Importer, QuoteModel
 import argparse
 
 
@@ -17,13 +17,13 @@ def generate_meme(path=None, body=None, author=None):
     quote = None
 
     if path is None:
-        image_path = "./data/ArtImages"
+        path = "./data/ArtImages"
         imgs = []
-        for root, _, files in os.walk(image_path):
+        for root, _, files in os.walk(path):
             imgs = [os.path.join(root, name) for name in files]
         img = random.choice(imgs)
     else:
-        img = path[0]
+        img = path
 
     if body is None:
         quote_files = [
@@ -44,17 +44,25 @@ def generate_meme(path=None, body=None, author=None):
         quote = QuoteModel(body, author)
 
     meme = Meme("./tmp")
-    path = meme.make_meme(img, quote.body, quote.author)
-    return path
+    meme_path = meme.make_meme(img, quote.body, quote.author)
+    return meme_path
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser("Create an art meme!!")
-    parser.add_argument("-img_path", type=str, nargs="*")
-    parser.add_argument("-body", type=str, nargs="*")
-    parser.add_argument("-author", type=str, nargs="*")
+    parser.add_argument("-img_path", type=str, default=None)
+    parser.add_argument("-body", type=str, default=None)
+    parser.add_argument("-author", type=str, default=None)
 
     args = parser.parse_args()
 
+    # print(args.img_path, type(args.img_path))
+    # print(args.body, type(args.body))
+    # print(args.author, type(args.author))
     print(generate_meme(args.img_path, args.body, args.author))
 
+    # generate_meme(
+    #     "C:\\Users\\agaworecki\\Downloads\\taft_test1.jpg",
+    #     body="some Quote about really thoughtful stuff",
+    #     author="smart person",
+    # )
