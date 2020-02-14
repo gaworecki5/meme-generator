@@ -19,8 +19,8 @@ class Meme:
 
         # Add quote to the image
         d = ImageDraw.Draw(img)
-        if img.width / float(img.height) >= 1.0:
-            text_size = 30
+        if img.width / float(img.height) <= 0.75:
+            text_size = 35
             location = random.randint(1, 7) / float(10)
         else:
             text_size = 20
@@ -42,11 +42,13 @@ class Meme:
         d = ImageDraw.Draw(img)
         d.text((10, location * img.height), text, fill="black", font=font_text)
         author_location = (
-            int(img.width / 2),
+            int(img.width / 4),
             location * img.height + text_size[1] * num_lines,
         )
         d.text(author_location, author, fill="black", font=font_author)
-        img.save(f"{self.out_path}/temp_meme.jpg")
 
-        return f"{self.out_path}/temp_meme.jpg"
+        # save and return the path to created meme
+        meme_path = f"{self.out_path}/temp_meme_.jpg"
+        img.save(meme_path)
+        return meme_path
 

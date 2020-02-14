@@ -43,7 +43,7 @@ def generate_meme(path=None, body=None, author=None):
             raise Exception("All quotes must have an author")
         quote = QuoteModel(body, author)
 
-    meme = Meme("./tmp")
+    meme = Meme("./static")
     meme_path = meme.make_meme(img, quote.body, quote.author)
     return meme_path
 
@@ -55,14 +55,5 @@ if __name__ == "__main__":
     parser.add_argument("-author", type=str, default=None)
 
     args = parser.parse_args()
-
-    # print(args.img_path, type(args.img_path))
-    # print(args.body, type(args.body))
-    # print(args.author, type(args.author))
     print(generate_meme(args.img_path, args.body, args.author))
 
-    # generate_meme(
-    #     "C:\\Users\\agaworecki\\Downloads\\taft_test1.jpg",
-    #     body="some Quote about really thoughtful stuff",
-    #     author="smart person",
-    # )
